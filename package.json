@@ -1,0 +1,42 @@
+{
+  "name": "extensible-validator",
+  "version": "1.0.0",
+  "description": "Typescript-friendly and extensible object and value validation",
+  "main": "dist/lib/index.js",
+  "types": "dist/lib/index.d.ts",
+  "scripts": {
+    "test": "ava dist/test/**/*.js",
+    "prepublish": "grunt"
+  },
+  "author": "Stewart Mackenzie-Leigh",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/lodash": "^4.14.55",
+    "@types/node": "^6.0.58",
+    "ava": "^0.17.0",
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-ts": "^6.0.0-beta.3",
+    "load-grunt-tasks": "^3.5.2",
+    "typescript": "^2.1.4"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  },
+  "keywords": [
+    "validator",
+    "validation",
+    "schema",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stewartml/extensible-validator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stewartml/extensible-validator/issues"
+  },
+  "homepage": "https://github.com/stewartml/extensible-validator#readme"
+}
