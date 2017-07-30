@@ -1,6 +1,6 @@
 {
   "name": "extensible-validator",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Typescript-friendly and extensible object and value validation",
   "main": "dist/lib/index.js",
   "types": "dist/lib/index.d.ts",
