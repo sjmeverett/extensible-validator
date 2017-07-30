@@ -2,14 +2,14 @@ import * as _ from 'lodash';
 import * as Core from './index';
 import { Any } from './any';
 
-export type KeyValidator = {[key: string]: Core.Validator};
+export type KeyValidation = {[key: string]: Core.Validator};
 
 
 /**
  * Requires a value to be a plain object.
  */
 export class Hash extends Any {
-  protected keyValidators: KeyValidator;
+  protected keyValidation: KeyValidation;
 
   constructor() {
     super((value) => value == null || _.isPlainObject(value), 'must be a plain object');
@@ -17,12 +17,12 @@ export class Hash extends Any {
 
 
   /**
-   * Sets the schemas for each key of the object.
-   * @param keyValidators A hash of schemas to keys.
+   * Sets the validators for each key of the object.
+   * @param keyValidation A hash of validators to keys.
    */
-  keys(keyValidators: KeyValidator): this {
+  keys(keyValidation: KeyValidation): this {
     let schema = super.clone();
-    schema.keyValidators = keyValidators;
+    schema.keyValidation = keyValidation;
     schema.addRule({validate: (values, context) => schema._validateKeys(values, context)});
     return schema;
   }
@@ -42,9 +42,9 @@ export class Hash extends Any {
     if (values == null)
       return [];
 
-    for (let key in this.keyValidators) {
+    for (let key in this.keyValidation) {
       context.path = basePath + key;
-      let result = this.keyValidators[key].validate(values[key], context);
+      let result = this.keyValidation[key].validate(values[key], context);
       results.push(...result);
     }
 
@@ -54,7 +54,7 @@ export class Hash extends Any {
 
   clone(): this {
     const schema = super.clone();
-    schema.keyValidators = this.keyValidators;
+    schema.keyValidation = this.keyValidation;
     return schema;
   }
 };
