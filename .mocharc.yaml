@@ -1,0 +1,6 @@
+spec: test/**/*.test.ts
+extension:
+  - ts
+require:
+  - ts-node/register
+reporter: spec

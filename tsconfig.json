@@ -3,15 +3,14 @@
     "target": "es6",
     "module": "commonjs",
     "sourceMap": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
     "outDir": "./dist",
-    "types": ["node"],
+    "types": ["node", "mocha"],
     "declaration": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src", "test"],
+  "exclude": ["node_modules"]
 }
