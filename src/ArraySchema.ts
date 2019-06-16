@@ -6,7 +6,7 @@ const arrayMessages = {
   type: 'must be an array',
 };
 
-export class ArraySchema<T> extends Schema<T[], typeof arrayMessages> {
+export class ArraySchema<T = any> extends Schema<T[], typeof arrayMessages> {
   private elementSchema?: Schema<T>;
 
   constructor() {
@@ -43,7 +43,7 @@ export class ArraySchema<T> extends Schema<T[], typeof arrayMessages> {
   }
 
   cast(value: any): T[] {
-    if (!this.elementSchema) {
+    if (!this.elementSchema || value == null) {
       return value;
     }
 

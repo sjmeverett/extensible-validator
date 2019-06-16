@@ -46,7 +46,7 @@ export class ObjectSchema<T> extends Schema<T> {
   }
 
   cast(value: any) {
-    if (!this.keyValidation) {
+    if (!this.keyValidation || value == null) {
       return value;
     }
 

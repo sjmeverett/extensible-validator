@@ -7,10 +7,12 @@ describe('NumberSchema', () => {
 
     it('passes undefined', () => {
       expect(schema.validate(undefined)).to.deep.equal([]);
+      expect(schema.cast(undefined)).to.equal(undefined);
     });
 
     it('passes null', () => {
       expect(schema.validate(undefined)).to.deep.equal([]);
+      expect(schema.cast(null)).to.equal(null);
     });
 
     it('passes 0', () => {

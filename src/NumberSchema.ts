@@ -73,6 +73,9 @@ export class NumberSchema extends Schema<
   }
 
   cast(value: any): number {
+    if (value == null) {
+      return value;
+    }
     return parseFloat(value);
   }
 }

@@ -22,6 +22,7 @@ const SchemaMessages = {
   required: 'required',
   unknown: 'unknown problem',
   matches: (key: string) => `must match key ${key}`,
+  oneOf: (options: any[]) => `must be one of: ${options.join(', ')}`,
 };
 
 /**
@@ -101,6 +102,13 @@ export class Schema<TResult = any, TOwnMessages = any> {
         value !== '',
       this._messages.required!,
     ) as any;
+  }
+
+  oneOf(options: any[]) {
+    return this.addTest(
+      value => value != null && value !== '' && _.includes(options, value),
+      this._messages.oneOf(options),
+    );
   }
 
   /**

@@ -37,4 +37,18 @@ describe('Schema', () => {
       ]);
     });
   });
+
+  describe('oneOf()', () => {
+    const schema = new Schema().oneOf(['a', 'b']);
+
+    it('passes expected value', () => {
+      expect(schema.validate('a')).to.deep.equal([]);
+    });
+
+    it('fails unexpected value', () => {
+      expect(schema.validate('c')).to.deep.equal([
+        { message: 'must be one of: a, b', path: null },
+      ]);
+    });
+  });
 });

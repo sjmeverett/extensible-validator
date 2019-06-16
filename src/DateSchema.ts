@@ -44,6 +44,10 @@ export class DateSchema<TResult extends string | Date = Date> extends Schema<
   }
 
   cast(value: any) {
+    if (value == null) {
+      return value;
+    }
+
     if (this._castFormat) {
       return (value instanceof Date
         ? moment(value)
