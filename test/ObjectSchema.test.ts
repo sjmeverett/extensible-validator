@@ -55,4 +55,12 @@ describe('ObjectSchema', () => {
       ]);
     });
   });
+
+  describe('cast()', () => {
+    const schema = object.keys({ n: number });
+
+    it('casts properly', () => {
+      expect(schema.cast({ n: '5', o: true })).to.deep.equal({ n: 5 });
+    });
+  });
 });

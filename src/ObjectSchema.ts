@@ -55,6 +55,20 @@ export class ObjectSchema<T> extends Schema<T> {
 
     return results;
   }
+
+  cast(value: any) {
+    if (!this.keyValidation) {
+      return value;
+    }
+
+    const result = {} as any;
+
+    for (const k in this.keyValidation) {
+      result[k] = this.keyValidation[k].cast(value[k]);
+    }
+
+    return result;
+  }
 }
 
 export const object = new ObjectSchema();
