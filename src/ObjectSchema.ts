@@ -34,26 +34,15 @@ export class ObjectSchema<T> extends Schema<T> {
 
   protected _validateKeys(
     values: { [key: string]: any },
-    _context?: ValidationContext,
+    context: ValidationContext = { model: values, path: null },
   ): ValidationResult {
-    const results: ValidationResult = [];
-
-    const context: ValidationContext = _context
-      ? Object.assign({}, _context)
-      : { model: values, path: null };
-
     const basePath = context.path ? context.path + '.' : '';
 
     if (values == null) return [];
 
-    for (const key in this.keyValidation) {
-      context.path = basePath + key;
-
-      const result = this.keyValidation[key].validate(values[key], context);
-      results.push(...result);
-    }
-
-    return results;
+    return _.flatMap(this.keyValidation, (schema, key) => {
+      return schema.validate(values[key], { ...context, path: basePath + key });
+    });
   }
 
   cast(value: any) {
@@ -61,13 +50,9 @@ export class ObjectSchema<T> extends Schema<T> {
       return value;
     }
 
-    const result = {} as any;
-
-    for (const k in this.keyValidation) {
-      result[k] = this.keyValidation[k].cast(value[k]);
-    }
-
-    return result;
+    return _.mapValues(this.keyValidation, (schema, key) => {
+      return schema.cast(value[key]);
+    });
   }
 }
 

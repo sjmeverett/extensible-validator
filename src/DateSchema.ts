@@ -19,9 +19,6 @@ export class DateSchema<TResult extends string | Date = Date> extends Schema<
   }
 
   protected typeTest = function(this: DateSchema, value: any) {
-    console.log({ value });
-    console.log(this._parseFormat);
-
     return (
       value === '' ||
       value == null ||

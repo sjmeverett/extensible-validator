@@ -1,3 +1,4 @@
+export * from './ArraySchema';
 export * from './DateSchema';
 export * from './NumberSchema';
 export * from './ObjectSchema';
