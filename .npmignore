@@ -1,4 +1,6 @@
 src/
-dist/test/
+test/
 .tscache
 tsconfig.json
+.prettierrc
+.mocharc.yaml
