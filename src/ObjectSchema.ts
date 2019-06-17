@@ -45,14 +45,14 @@ export class ObjectSchema<T> extends Schema<T> {
     });
   }
 
-  cast(value: any) {
+  cast(value: any): T {
     if (!this.keyValidation || value == null) {
       return value;
     }
 
     return _.mapValues(this.keyValidation, (schema, key) => {
       return schema.cast(value[key]);
-    });
+    }) as any;
   }
 }
 
