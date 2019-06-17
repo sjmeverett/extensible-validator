@@ -1,6 +1,7 @@
 import { Schema } from './Schema';
 import * as _ from 'lodash';
 import { ValidationContext } from './ValidationContext';
+import { ValidationError } from './ValidationError';
 
 const arrayMessages = {
   type: 'must be an array',
@@ -29,7 +30,7 @@ export class ArraySchema<T = any> extends Schema<T[], typeof arrayMessages> {
   protected _validateElements(
     values: any,
     context: ValidationContext = { model: values, path: null },
-  ) {
+  ): ValidationError[] {
     const basePath = context.path ? context.path + '.' : '';
 
     if (values == null) return [];

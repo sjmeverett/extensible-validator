@@ -9,7 +9,8 @@
     "strictNullChecks": true,
     "outDir": "./dist",
     "types": ["node", "mocha"],
-    "declaration": true
+    "declaration": true,
+    "rootDir": "src"
   },
   "include": ["src"],
   "exclude": ["node_modules"]
