@@ -17,10 +17,12 @@ describe('NumberSchema', () => {
 
     it('passes 0', () => {
       expect(schema.validate(0)).to.deep.equal([]);
+      expect(schema.cast(0)).to.equal(0);
     });
 
     it('passes a number', () => {
       expect(schema.validate(5)).to.deep.equal([]);
+      expect(schema.cast(5)).to.equal(5);
     });
 
     it('passes a numeric string', () => {

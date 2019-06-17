@@ -71,7 +71,9 @@ export class StringSchema extends Schema<
   }
 
   cast(value: any): string {
-    return typeof value === 'string' ? value : value.toString();
+    return typeof value === 'string' || value == null
+      ? value
+      : value.toString();
   }
 }
 

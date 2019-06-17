@@ -7,18 +7,22 @@ describe('StringSchema', () => {
 
     it('passes empty string', () => {
       expect(schema.validate('')).to.deep.equal([]);
+      expect(schema.cast('')).to.equal('');
     });
 
     it('passes non-empty string', () => {
       expect(schema.validate('hi')).to.deep.equal([]);
+      expect(schema.cast('hi')).to.equal('hi');
     });
 
     it('passes null', () => {
       expect(schema.validate(null)).to.deep.equal([]);
+      expect(schema.cast(null)).to.equal(null);
     });
 
     it('passes undefined', () => {
       expect(schema.validate(undefined)).to.deep.equal([]);
+      expect(schema.cast(undefined)).to.equal(undefined);
     });
 
     it('passes number', () => {
