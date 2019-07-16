@@ -88,7 +88,7 @@ export class Schema<TResult = any, TOwnMessages = any> {
   }
 
   messages(messages: Partial<typeof SchemaMessages & TOwnMessages>) {
-    Object.assign(this._messages, messages);
+    return this.clone(self => Object.assign(self._messages, messages));
   }
 
   /**
@@ -118,8 +118,10 @@ export class Schema<TResult = any, TOwnMessages = any> {
    */
   matches(key: string, message?: string): this {
     return this.addTest(
-      (value: any, context?: { [key: string]: any }) =>
-        context != null && _.isPlainObject(context) && value == context[key],
+      (value: any, context?: ValidationContext) =>
+        context != null &&
+        _.isPlainObject(context) &&
+        value == context.model[key],
       message || this._messages.matches(key),
     );
   }

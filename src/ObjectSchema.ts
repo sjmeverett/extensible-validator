@@ -39,9 +39,14 @@ export class ObjectSchema<T> extends Schema<T> {
     const basePath = context.path ? context.path + '.' : '';
 
     if (values == null) return [];
+    const model = context.model || values;
 
     return _.flatMap(this.keyValidation, (schema, key) => {
-      return schema.validate(values[key], { ...context, path: basePath + key });
+      return schema.validate(values[key], {
+        ...context,
+        model,
+        path: basePath + key,
+      });
     });
   }
 

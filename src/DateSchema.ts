@@ -40,10 +40,10 @@ export class DateSchema<TResult extends string | Date = Date> extends Schema<
   castFormat(format: string): DateSchema<string> {
     return this.clone(schema => {
       schema._castFormat = format;
-    });
+    }) as any;
   }
 
-  cast(value: any) {
+  cast(value: any): TResult {
     if (value == null) {
       return value;
     }

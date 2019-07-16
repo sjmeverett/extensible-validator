@@ -51,4 +51,20 @@ describe('Schema', () => {
       ]);
     });
   });
+
+  describe('matches()', () => {
+    const schema = new Schema().matches('b');
+
+    it('passes when value matches', () => {
+      expect(
+        schema.validate('test', { model: { b: 'test' }, path: '' }),
+      ).to.deep.equal([]);
+    });
+
+    it('fails when value does not match', () => {
+      expect(
+        schema.validate('test', { model: { b: 'test2' }, path: '' }),
+      ).to.deep.equal([{ message: 'must match key b', path: null }]);
+    });
+  });
 });
