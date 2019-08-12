@@ -10,7 +10,7 @@
     "clean": "rimraf dist",
     "test": "mocha"
   },
-  "author": "Stewart Mackenzie-Leigh",
+  "author": "Stewart Everett",
   "license": "ISC",
   "devDependencies": {
     "@types/chai": "^4.1.7",
