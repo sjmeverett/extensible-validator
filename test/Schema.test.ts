@@ -36,6 +36,20 @@ describe('Schema', () => {
         { message: 'required', path: null },
       ]);
     });
+
+    it('requires value when passed function evaluates to true', () => {
+      const schema = new Schema().required(() => true);
+      expect(schema.validate('')).to.deep.equal([
+        { message: 'required', path: null },
+      ]);
+      expect(schema.validate('.')).to.deep.equal([]);
+    });
+
+    it('does not require value when passed function evaluates to false', () => {
+      const schema = new Schema().required(() => false);
+      expect(schema.validate('')).to.deep.equal([]);
+      expect(schema.validate('.')).to.deep.equal([]);
+    });
   });
 
   describe('oneOf()', () => {

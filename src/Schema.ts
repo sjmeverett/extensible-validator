@@ -97,9 +97,8 @@ export class Schema<TResult = any, TOwnMessages = any> {
   required(condition?: TestFn): this {
     return this.addTest(
       (value, context) =>
-        (!condition || condition(value, context)) &&
-        value != null &&
-        value !== '',
+        (condition && !condition(value, context)) ||
+        (value != null && value !== ''),
       this._messages.required!,
     ) as any;
   }
