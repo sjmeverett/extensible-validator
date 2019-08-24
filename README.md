@@ -1,8 +1,6 @@
 # extensible-validator
 
-Typescript-friendly and extensible object and value validation. It looks mostly like
-[joi](https://www.npmjs.com/package/joi),
-but is more extensible and auto-complete friendly.
+Typescript-friendly and extensible object and value validation.
 
 Also, unlike like other libraries where `validate` throws an error, I just return an array of errors, which could be empty. Throwing an error in the case of bad input from a function which exists to consider the case of bad input is ugly as hell.
 

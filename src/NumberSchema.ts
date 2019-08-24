@@ -13,7 +13,7 @@ const numberMessages = {
 };
 
 /**
- * Requires the valufe to be a number, or a string representing a number.
+ * Requires the value to be a number, or a string representing a number.
  */
 export class NumberSchema extends Schema<
   number | undefined | null,

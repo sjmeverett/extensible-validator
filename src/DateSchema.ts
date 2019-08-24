@@ -13,6 +13,7 @@ export class DateSchema<TResult extends string | Date = Date> extends Schema<
 > {
   private _parseFormat = 'YYYY-MM-DDTHH:mm:ss.SSSZ';
   private _castFormat?: string;
+  private _utc = true;
 
   constructor() {
     super(dateMessages);
@@ -30,10 +31,11 @@ export class DateSchema<TResult extends string | Date = Date> extends Schema<
     );
   };
 
-  format(format: string) {
+  format(format: string, utc = true) {
     return this.clone(schema => {
       schema._parseFormat = format;
       schema._messages.type = schema._messages.format(format);
+      schema._utc = utc;
     });
   }
 
@@ -48,15 +50,17 @@ export class DateSchema<TResult extends string | Date = Date> extends Schema<
       return value;
     }
 
+    const m = this._utc ? moment.utc : moment;
+
     if (this._castFormat) {
       return (value instanceof Date
-        ? moment(value)
-        : moment(value, this._parseFormat)
+        ? m(value)
+        : m(value, this._parseFormat)
       ).format(this._castFormat) as any;
     } else {
       return (value instanceof Date
         ? value
-        : moment(value, this._parseFormat).toDate()) as any;
+        : m(value, this._parseFormat).toDate()) as any;
     }
   }
 }

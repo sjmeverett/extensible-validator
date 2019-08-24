@@ -40,7 +40,7 @@ describe('DateSchema', () => {
   });
 
   describe('format', () => {
-    const schema = date.format('HH:mm');
+    const schema = date.format('HH:mm', false);
 
     it('passes correct format', () => {
       expect(schema.validate('19:44')).to.deep.equal([]);
